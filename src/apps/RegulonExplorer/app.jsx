@@ -1,24 +1,21 @@
-import { Button } from '@mui/material'
+import { LinearProgress } from '@mui/material'
 import Style from './style.module.css'
-import DownloadIcon from '@mui/icons-material/Download';
-import ReplayIcon from '@mui/icons-material/Replay';
+import {useState} from "react";
+import TopBar from "./components/TopBar";
+import SideBar from "./components/SideBar";
 
 export default function RiSetExplorer() {
+    const [loading, setLoading] = useState(false)
     const processService = process.env.REACT_APP_PROSSES_SERVICE + '/gramaticalTool/process/'
     return (
         <div>
-            <div className={Style.topbar} >
-                <Button variant="outlined" endIcon={<ReplayIcon />} >Reset Filters</Button>
-                <Button variant="outlined" endIcon={<DownloadIcon/>} >Export to</Button>
-            </div>
+            {loading ? <LinearProgress /> : <div style={{height: "4px", backgroundColor: "#f4f5f5"}} /> }
+            <TopBar />
             <div className={Style.container} >
                 <div className={Style.sidebar}>
-                    <h2>Filter Options</h2>
-                    {/* Contenido de herramientas */}
+                    <SideBar />
                 </div>
                 <div className={Style.main}>
-                    <h1>Contenido Principal</h1>
-                    {/* Tu contenido principal aquí */}
                 </div>
             </div>
         </div>
