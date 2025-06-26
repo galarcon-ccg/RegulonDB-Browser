@@ -1,21 +1,27 @@
-import {Box, IconButton, Typography, Accordion, AccordionDetails, AccordionSummary, Tooltip} from '@mui/material'
-import {UploadFile, ExpandMore, HelpOutline} from "@mui/icons-material"
 import React from "react";
+import {Box, IconButton, Typography, Accordion, AccordionDetails, AccordionSummary, Tooltip} from '@mui/material'
+import {UploadFile, ExpandMore, HelpOutline, FilterList, Settings} from "@mui/icons-material"
+import FileSelection from "./cards/FileSelection";
+import PredefinedRegionTypes from "./cards/PredefinedRegionTypes";
 
 export default function SideBar(){
 
     return (
         <div>
-            <Step icon={<UploadFile/>} title={"File Selection"} help={'Select or upload your RISet data source.'} open >
-                Hola
-            </Step>
+            <Card icon={<UploadFile/>} title={"File Selection"} help={'Select or upload your RISet data source.'} open >
+                <FileSelection />
+            </Card>
+            <Card icon={<FilterList sx={{color: 'info.main'}}/>} title={"Predefined Region Types"} help={'Select a predefined configuration for the different types of region, this selection adds defined values to the filters.'} >
+                <PredefinedRegionTypes />
+            </Card>
+            <Card icon={<Settings color="success" />} title={"Filter by elements"} help={""} >
 
-
+            </Card>
         </div>
     )
 }
 
-const Step = ({children,icon, title, open=false, help=""})=>{
+const Card = ({children,icon, title, open=false, help=""})=>{
     return (
             <Accordion defaultExpanded={open}>
                 <AccordionSummary
